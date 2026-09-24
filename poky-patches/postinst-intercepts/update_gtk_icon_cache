@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: MIT
+#
+# Post-install intercept for gtk-icon-cache.bbclass
+set -e
+# Update native pixbuf loaders
+if [ -x "$STAGING_DIR_NATIVE/usr/lib/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders" ]; then
+    "$STAGING_DIR_NATIVE/usr/lib/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders" --update-cache
+fi
+for icondir in $D/usr/share/icons/*/ ; do
+    if [ -d $icondir ] ; then
+        for gtkuic_cmd in gtk-update-icon-cache gtk4-update-icon-cache ; do
+            if [ -n "$(which $gtkuic_cmd)" ]; then
+                $gtkuic_cmd -fqt  $icondir
+            fi
+        done
+    fi
+done

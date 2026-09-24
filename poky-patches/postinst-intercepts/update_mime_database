@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: MIT
+#
+# Post-install intercept for mime.bbclass
+echo "Updating MIME database... this may take a while."
+mkdir -p "$D/usr/share/mime/packages"
+update-mime-database "$D/usr/share/mime"

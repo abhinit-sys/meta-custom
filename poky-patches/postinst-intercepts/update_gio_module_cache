@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: MIT
+#
+set -e
+test -x "$D${libexecdir}/${binprefix}gio-querymodules" -a -d "$D${libdir}/gio/modules" && PSEUDO_UNLOAD=1 ${binprefix}qemuwrapper -L $D $D${libexecdir}/${binprefix}gio-querymodules $D${libdir}/gio/modules/ ; true
+test ! -e "$D${libdir}/gio/modules/giomodule.cache" || chown root:root $D${libdir}/gio/modules/giomodule.cache

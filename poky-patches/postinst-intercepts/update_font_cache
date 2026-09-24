@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: MIT
+#
+set -e
+test -x "$D${libexecdir}/${binprefix}fc-cache" || exit 0
+rm -f $D${fontconfigcachedir}/CACHEDIR.TAG
+if [ -n "${fontconfigcacheenv}" ]; then
+    PSEUDO_UNLOAD=1 ${binprefix}qemuwrapper -L $D -E ${fontconfigcacheenv} $D${libexecdir}/${binprefix}fc-cache --sysroot=$D --system-only ${fontconfigcacheparams}
+else
+    PSEUDO_UNLOAD=1 ${binprefix}qemuwrapper -L $D $D${libexecdir}/${binprefix}fc-cache --sysroot=$D --system-only ${fontconfigcacheparams}
+fi
+chown -R root:root $D${fontconfigcachedir}
+find $D -type f -name .uuid -exec chown root:root '{}' +
