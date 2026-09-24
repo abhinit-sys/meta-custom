@@ -1,0 +1,2 @@
+PACKAGECONFIG:remove = "tests"
+PTEST_ENABLED = "0"
