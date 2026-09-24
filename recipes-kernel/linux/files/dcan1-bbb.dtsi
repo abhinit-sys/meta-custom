@@ -1,0 +1,15 @@
+/* Enable DCAN1 on BeagleBone Black P9.24 (TX) / P9.26 (RX) */
+&am33xx_pinmux {
+	dcan1_pins: dcan1_pins {
+		pinctrl-single,pins = <
+			0x184 0x0002	/* P9.24 uart1_txd.d_can1_tx, MODE2, output */
+			0x180 0x0032	/* P9.26 uart1_rxd.d_can1_rx, MODE2, input+pullup */
+		>;
+	};
+};
+
+&dcan1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&dcan1_pins>;
+};
