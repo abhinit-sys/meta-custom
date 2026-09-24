@@ -11,16 +11,21 @@ BeagleBone Black Rev D (armv7l).
 | Raspberry Pi 5 | BCM2712 Cortex-A76 | 8 GB | Qt 6.11.0 | 192.168.0.100 |
 | BeagleBone Black Rev D | AM335x Cortex-A8 | 512 MB | Qt 5.15.x | 192.168.0.101 |
 
+
+
 ## Layer Structure
-meta-custom/
-├── conf/layer.conf
-├── recipes-bsp/           # cmdline.txt: root=/dev/sda2 (USB SSD boot)
-├── recipes-connectivity/  # OpenSSH: sshd_config, sshdgenkeys.service
-├── recipes-core/images/   # core-image-rpi5-dev.bb + core-image-bbb-dev.bb
-├── recipes-graphics/      # Weston: weston.ini (DRM + VNC backend)
-├── recipes-kernel/        # Kernel fragments: PHY drivers
-├── recipes-qt/            # Qt Wayland test application
-└── wic/                   # Custom 10 GB root partition layout
+
+    meta-custom/
+    ├── conf/layer.conf
+    ├── recipes-bsp/           # cmdline.txt: root=/dev/sda2 (USB SSD boot)
+    ├── recipes-connectivity/  # OpenSSH: sshd_config, sshdgenkeys.service
+    ├── recipes-core/images/   # core-image-rpi5-dev.bb + core-image-bbb-dev.bb
+    ├── recipes-graphics/      # Weston: weston.ini (DRM + VNC backend)
+    ├── recipes-kernel/        # Kernel fragments: PHY drivers
+    ├── recipes-qt/            # Qt Wayland test application
+    └── wic/                   # Custom 10 GB root partition layout
+
+
 
 ## Key Features
 
